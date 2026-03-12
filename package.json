@@ -1,0 +1,60 @@
+{
+  "name": "asm-runner",
+  "displayName": "ASM Runner",
+  "description": "TASM/DOS assembler runner for VS Code",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "activationEvents": [
+    "onLanguage:asm"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "languages": [
+      {
+        "id": "asm",
+        "extensions": [
+          ".asm"
+        ],
+        "aliases": [
+          "Assembly",
+          "asm"
+        ]
+      }
+    ],
+    "commands": [
+      {
+        "command": "asm.run",
+        "title": "Run ASM",
+        "icon": "$(play)"
+      }
+    ],
+    "menus": {
+      "editor/title": [
+        {
+          "command": "asm.run",
+          "when": "resourceExtname == .asm",
+          "group": "navigation"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "ASM Runner",
+      "properties": {
+        "asmRunner.runBatPath": {
+          "type": "string",
+          "default": "./bin/run.bat",
+          "description": "Путь к run.bat"
+        }
+      }
+    }
+  },
+  "dependencies": {
+    "node-pty": "^1.1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dkar-dev/asm-runner"
+}
+}
